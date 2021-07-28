@@ -1,0 +1,100 @@
+/* Global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(27, 27, 27);
+}
+
+/* Title */
+.title {
+    margin-bottom: 30px;
+}
+
+/* Register Container */
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    height: 50%;
+    width: 25%;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.inputs-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+    /* Labels */
+    .lbl-container {
+        width: 70%;
+    }
+
+    .lbl-title {
+        font-size: .8rem;
+    }
+
+    /* Inputs */
+    .user-input {
+        margin-bottom: 20px;
+        padding: 8px 14px;
+        text-align: center;
+        border: 0px;
+        border-radius: 10px;
+        width: 70%;
+    }
+
+    /* Button */
+    .submit {
+        padding: 7px 14px;
+        width: 50%;
+        font-size: 1.1rem;
+        border-radius: 14px;
+        border-color: rgb(27, 27, 27);
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+
+    .submit:hover {
+        background-color: rgb(27, 27, 27);
+        color: white;
+        transition: 400ms;
+    }
+
+    /* Alternatives */
+    .alternatives-container {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .alternative {
+        text-decoration: none;
+        color: rgb(59, 59, 59);
+        margin: 10px 0px;
+    }
+
+/* Media Queries */

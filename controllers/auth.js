@@ -1,9 +1,9 @@
 exports.register = (req, res, next) => {
-    res.render('home');
+    res.render('register');
 };
 
 exports.login = (req, res, next) => {
-    res.send('Login Route');
+    res.render('login');
 };
 
 exports.forgotPassword = (req, res, next) => {

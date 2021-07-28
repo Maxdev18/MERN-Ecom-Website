@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camp Land | Login</title>
+    <link rel="stylesheet" type="text/css" href="/styles/loginpage/auth.css">
+    
+</head>
+<body>
+    <div class="login-container">
+        <h1 class="title">Login</h1>
+        <form action="/auth/login" class="form login-form" method="POST">
+            <div class="inputs-container">
+                <div class="label-container">
+                    <label for="username" class="username-label auth-label">Username or Email:</label>
+                </div>
+                <input type="text" name="name or email" id="username-input" class="auth-input" placeholder="username or email" required>
+                <div class="label-container">
+                    <label for="password" class="password-label auth-label">Password:</label>
+                </div>
+                <input type="password" name="password" id="password-input" class="auth-input" placeholder="password" required>
+                <button type="submit" class="submit">Login</button>
+            </div>
+        </form>
+
+        <div class="other-options-container">
+            <a href="/auth/register" class="register-link alternative">Sign up</a>
+            <a href="/auth/forgotpassword" class="forgotpassword-link alternative">Forgot Password</a>
+        </div>
+    </div>
+</body>
+</html>
