@@ -7,7 +7,7 @@ exports.login = (req, res, next) => {
 };
 
 exports.forgotPassword = (req, res, next) => {
-    res.send('Forgot Password Route');
+    res.render('forgotpassword');
 };
 
 exports.resetPassword = (req, res, next) => {
