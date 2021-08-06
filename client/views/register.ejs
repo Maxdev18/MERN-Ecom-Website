@@ -9,21 +9,25 @@
 <body>
     <div class="register-container">
         <h1 class="title">Sign Up</h1>
-        <form action="/user/:id" class="form-container" method="POST">
+        <form action="/auth/login" class="form-container" method="POST">
             <div class="inputs-container">
                 <div class="lbl-container">
                     <label for="username" class="lbl-title">Username:</label>
                 </div>
-                <input type="text" class="user-input" placeholder="johnny123" required>
+                <input type="text" class="user-input" name="username" placeholder="johnny123" required>
                 <div class="lbl-container">
                     <label for="email" class="lbl-title">Email:</label>
                 </div>
-                <input type="email" class="user-input" placeholder="youremail@example.com" required>
+                <input type="email" class="user-input" name="email" placeholder="youremail@example.com" required>
                 <div class="lbl-container">
                     <label for="password" class="lbl-title">Password:</label>
                 </div>
-                <input type="password" class="user-input" placeholder="password" required>
-                <button class="submit" type="submit">Sign up</button>
+                <input type="password" class="user-input" name="password" placeholder="password" required>
+                <div class="lbl-container">
+                    <label for="password" class="lbl-title">Re-enter password:</label>
+                </div>
+                <input type="password" class="user-input" name="verifyPassword" placeholder="password" required>
+                <input class="submit" type="submit">Sign up</input>
             </div>
         </form>
 

@@ -5,12 +5,10 @@ const express = require('express');
 const router = express.Router();
 
 // Home Controllers
-const homeController = require('');
+const homeController = require('../controllers/home');
 
 //Routes
-router.get('/', (req, res) => {
-    res.render('../client/views/home');
-});
+router.get('/', homeController.home);
 
 //Export Routes
 module.exports = router;

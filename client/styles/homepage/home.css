@@ -11,3 +11,21 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Header Section */
+.header-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 70vh;
+  /* add Background later */
+}
+

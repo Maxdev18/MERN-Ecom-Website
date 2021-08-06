@@ -4,6 +4,10 @@
   "description": "",
   "main": "./server/server.js",
   "scripts": {
+    "start": "node server/server.js",
+    "server": "nodemon server/server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,8 +22,13 @@
   },
   "homepage": "https://github.com/Maxdev18/MERN-Ecom-Website#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "concurrently": "^6.2.0",
+    "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.0.1",
     "mongoose": "^5.13.3",
     "nodemon": "^2.0.12"
