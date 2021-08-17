@@ -1,0 +1,84 @@
+/* Global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --main-darkblue-color: #001C3A;
+    --main-blue-color: #0D4E85;
+    --main-color-lightgrey: #C0C0CC;
+    --main-color-light-blue: #DAE1F0;
+    /* Another main color is white but will not be declared obviously */
+  }
+
+/* Category Container */
+.category-container {
+    display: flex;
+    width: 70%;
+    justify-content: space-around;
+    margin-top: 20px;
+    padding-left: -10%;
+    padding-right: -10%;
+}
+
+.category {
+    width: 60%;
+    height: 50vh;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow-y:hidden;
+    /* transition: all 0.75s ease-out; */
+}
+
+.category-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    transition: all 0.75s ease-out;
+    color: white;
+}
+
+.category-title a{
+    display: flex;
+    font-size: 2rem;
+    text-decoration: none;
+    color: white;
+}
+
+.category-title:hover {
+    background-color: rgba(0,0,0,.5);
+}
+
+.phones-category {
+    background-image: url('../../photos/iphone.jpg');
+    background-size: cover;
+    background-position: center;
+    margin-right: 10px;
+}
+
+.phones-category:hover h2 {
+    transition: 500ms;
+    transform: perspective(200px) translateZ(20px);
+}
+
+.laptops-category {
+    background-image: url('../../photos/macbook.jpg');
+    background-size: cover;
+    background-position: center;
+    margin-left: 10px;
+}
+
+.laptops-category:hover h2 {
+    transition: 500ms;
+    transform: perspective(200px) translateZ(20px);
+}
+
+.products-title {
+    margin-top: 30px;
+}
+

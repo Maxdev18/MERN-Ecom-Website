@@ -1,0 +1,138 @@
+/* Declare variables for main color palette */
+:root {
+  --main-darkgray-color: #111111;
+  --main-gray-color: rgb(129, 129, 129);
+  --main-color-lightgray: #C0C0CC;
+}
+
+/*Global*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    overflow-x: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 160vh;
+}
+
+/* Header Section */
+#root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 200vh;
+}
+
+.home-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 60vh;
+  background-image: url('../../photos/home-bg.jpg');
+  background-position: center;
+  background-repeat: none;
+  background-size: cover;
+}
+
+.home-sub-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0px 60px;
+  background-color: rgba(0, 0, 0, .7);
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Shop Container */
+.shop-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 45%;
+  margin-top: 150px;
+}
+
+.shop-description {
+  text-align: center;
+}
+
+.shop-btns-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.btn-shop{
+  padding: 12px 24px;
+  border: 1px solid white;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 1rem;
+}
+
+.btn-shop:hover {
+  transition: 400ms;
+  background-color: white;
+  color: black;
+}
+
+.descriptions-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Title Container */
+.title-container {
+  width: 35%;
+  margin-bottom: 150px;
+}
+
+.title-description {
+  margin-top: 20px;
+  font-size: 1.3rem;
+}
+
+/* Text */
+.header-text {
+  color: white;
+}
+
+.title, .shop-description, .learn-description {
+  font-size: 2rem;
+}
+
+/* Products/Categories Container */
+.home-products-container {
+  display: flex;
+  width: 100%;
+  height: 70vh;
+  flex-direction: column;
+  align-items: center;
+}
