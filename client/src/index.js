@@ -6,6 +6,9 @@ import ReactDOM from 'react-dom';
 import { Home } from './components/homeBody';
 import { Nav } from './components/nav';
 import { Footer } from './components/footer';
+import { About } from './components/about';
+import { Login } from './components/login';
+import { Register } from './components/register';
 
 const App = () => {
     let [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -15,9 +18,9 @@ const App = () => {
             <div className="container">
                 <Nav isLoggedIn={ isLoggedIn }/>
                 <Route exact path="/" component={Home} />
-                {/* <Route path="/login" component={Login} />
-                <Route />
-                <Route /> */}
+                <Route exact path="/about" component={About} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/register" component={Register} />
                 <Footer />
             </div>
         </Router>

@@ -10,11 +10,11 @@ export const Nav = (props) => {
         checkLogin: () => {
             if(props.isLoggedIn) {
                 return (
-                    <button className="login" href="/login">Logout</button>
+                    <a className="btn-login" href="/login">Logout</a>
                 )
             } else {
                 return (
-                    <button className="login" href="/login">Login</button>
+                    <a className="btn-login" href="/login">Login</a>
                 )
             }
         }
@@ -26,7 +26,7 @@ export const Nav = (props) => {
 
     return (
             <nav className="nav-container">
-                <h1 className="logo" href="/">MERN Stack</h1>
+                <a className="logo" href="/">MERN Stack</a>
                 <div className="links-container">
                     <a href="/products">Products</a>
                     <a href="/about">About</a>

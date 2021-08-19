@@ -112,7 +112,7 @@ img {
 }
 
 /* Login */
-.login {
+.btn-login {
     border: 1px solid rgba(0, 0, 0, 0);
     background-color: rgba(0, 0, 0, 0);
     color: white;
@@ -123,6 +123,6 @@ img {
     cursor: pointer;
 }
 
-.login:hover {
+.btn-login:hover {
     border: 1px solid white;
 }

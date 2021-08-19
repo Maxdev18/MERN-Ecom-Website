@@ -11,7 +11,7 @@ input {
 }
 
 /* Text */
-.register-title {
+.login-title {
     text-align: center;
     margin-top: 20px;
     margin-bottom: 30px;
@@ -21,7 +21,7 @@ input {
     color: var(--main-gray-color);
 }
 
-.link-register {
+.link-forgot, .link-register {
     color: blue;
 }
 
@@ -31,7 +31,7 @@ input {
 }
 
 /* Containers */
-.main-register-container {
+.main-login-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,7 +41,7 @@ input {
     height: 70vh;
 }
 
-.register-container {
+.login-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -51,7 +51,7 @@ input {
     box-shadow: 0px 0px 5px var(--main-darkgray-color);
 }
 
-.form-register-container {
+.form-login-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -80,7 +80,7 @@ input {
 }
 
 /* Buttons */
-.button-register {
+.button-login {
     padding: 14px 0px;
     background-color: rgba(0,0,0,0);
     border: 1px solid var(--main-darkgray-color);
@@ -88,7 +88,7 @@ input {
     width: 100%;
 }
 
-.button-register:hover {
+.button-login:hover {
     background-color: var(--main-darkgray-color);
     border: 1px solid rgba(0,0,0,0);
     color: white;

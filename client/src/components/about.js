@@ -1,0 +1,20 @@
+import React from 'react';
+import '../styles/components/about.css';
+
+export const About = () => {
+    return (
+        <div className="about-container">
+            <h1 className="about-title">About</h1>
+            <p className="about-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dapibus libero et lacus semper commodo. Donec feugiat purus vel nisi sollicitudin interdum. Fusce non lorem a lorem elementum ornare interdum eget nisi. Nunc ac nisi et purus efficitur cursus. Suspendisse interdum nisl sit amet ornare placerat. Integer eu velit sodales, dictum leo at, aliquam risus. Integer blandit, risus vel sagittis auctor, sem massa efficitur purus, eu posuere mi arcu eget diam. Nulla facilisi. Vestibulum ac pharetra lectus. Vivamus dictum, magna eu eleifend eleifend, lacus mauris suscipit elit, ultricies porta turpis felis eget lorem. Maecenas ut dolor nibh. Quisque sed quam urna. Suspendisse commodo nisl lectus, eget commodo ipsum venenatis vel. Praesent lacinia augue a diam consectetur, vel fermentum neque maximus. Curabitur eros ante, imperdiet at tincidunt eu, dapibus vel tortor. Nullam posuere, nisl eget semper ullamcorper, quam turpis dictum ex, id feugiat arcu orci vel mauris.<br /><br />
+
+                Duis leo ligula, placerat vel arcu nec, condimentum sagittis magna. Aenean cursus porta odio, sed mattis nisi suscipit sit amet. Nullam at tellus nulla. Quisque fringilla elementum rutrum. Curabitur lacinia nec nisl id varius. Curabitur ultricies, urna vitae egestas tempor, magna tortor fringilla enim, at viverra turpis tortor nec libero. Nullam tempor faucibus tortor, eu ullamcorper ante fermentum sit amet. Nunc vel urna malesuada, ultrices eros ut, euismod risus. Integer vitae tortor vitae orci lobortis consectetur ac vel eros. Quisque quis nunc iaculis, feugiat nulla vitae, luctus sem. Suspendisse interdum ornare blandit. Vestibulum commodo enim eget dolor egestas, volutpat pharetra orci iaculis. Praesent sollicitudin, urna ut rutrum vulputate, lacus augue scelerisque nunc, vitae tristique tellus justo ut nisl. Fusce nunc mi, auctor ut ipsum ac, aliquam lobortis eros.<br /><br />
+
+                Vestibulum lorem sapien, venenatis ut pharetra quis, tristique vel enim. Sed ac pretium nulla, vitae condimentum leo. Donec vitae nisi lobortis, condimentum felis volutpat, pellentesque tortor. Pellentesque vulputate tempus commodo. Mauris aliquet enim ac nulla posuere pretium. Aliquam lobortis metus et est lobortis suscipit. Sed imperdiet felis sit amet tellus volutpat ullamcorper quis id metus. Etiam ornare auctor augue vel tincidunt.<br /><br />
+
+                Proin consectetur lorem est. Donec et congue nisi. Nullam elementum aliquet ligula, vel euismod risus dignissim ac. Vivamus neque nulla, congue vitae egestas id, semper et sem. Pellentesque vehicula ultrices neque, nec varius lectus pharetra tempor. In nec porta erat. Quisque eget felis sit amet magna porttitor gravida vel ac diam. Phasellus ac condimentum libero. Donec in scelerisque magna. Duis et metus ante. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi pellentesque enim ornare elit rutrum hendrerit. Sed a fringilla nunc. In felis mauris, facilisis a tellus et, egestas dictum nisl.<br /><br />
+
+                Morbi eu gravida nunc, eu cursus nunc. Fusce ac tortor ligula. Aliquam erat volutpat. Fusce at libero in tellus lacinia volutpat. Suspendisse lectus urna, mattis ut ligula eget, sodales ornare nibh. Duis in bibendum nisi, a dapibus ligula. Vestibulum in mauris aliquet, commodo lectus in, facilisis urna. Duis sit amet orci eu mi iaculis lacinia. Fusce dictum sit amet nulla nec imperdiet. Sed id facilisis lorem, nec hendrerit arcu. Etiam ligula sapien, fermentum non sem sit amet, venenatis tincidunt mi. Nullam dignissim fringilla ultrices.
+            </p>
+        </div>
+    )
+};
