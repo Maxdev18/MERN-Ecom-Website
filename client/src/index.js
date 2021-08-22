@@ -9,6 +9,7 @@ import { Footer } from './components/footer';
 import { About } from './components/about';
 import { Login } from './components/login';
 import { Register } from './components/register';
+import { ForgotPassword } from './components/forgotPW';
 
 const App = () => {
     let [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -21,6 +22,7 @@ const App = () => {
                 <Route exact path="/about" component={About} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
+                <Route exact path="/forgot-password" component={ForgotPassword}/>
                 <Footer />
             </div>
         </Router>
