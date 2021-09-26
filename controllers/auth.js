@@ -1,3 +1,8 @@
+/* Note: We need to send a validation request for every page reload or redirect
+to check for JWT is valid
+- Can't put it in every controller because too repetative
+*/
+
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/authentication/userModel');
@@ -11,10 +16,10 @@ exports.register = async (req, res) => {
     if(takenEmail) {
         res.json({message: "This email is already taken"});
     } else {
-        // Hash password
+        // Hash password, the 2nd param in hash function is the salt
         newUser.password = await bcrypt.hash(req.body.password, 10);
 
-        // Save user in DB
+        // Save user into DB
         const dbUser = new User({
             firstName: newUser.firstName.toLowerCase(),
             lastName: newUser.lastName.toLowerCase(),
@@ -29,36 +34,31 @@ exports.register = async (req, res) => {
     }
 };
 
-exports.login = (req, res) => {
+exports.login = (req, res, next) => {
     const userLoggingIn = req.body;
-    console.log(userLoggingIn)
 
+    // Check for email in DB
     User.findOne({ email: userLoggingIn.email })
         .then(dbUser => {
             if(!dbUser) {
                 return res.json({message: "Invalid email or password"})
             }
+            // Compare passwords if same or not
             bcrypt.compare(userLoggingIn.password, dbUser.password)
                 .then(isCorrect => {
                     if(isCorrect) {
-                        const payload = {
-                            id: dbUser._id,
-                            email: dbUser.email
-                        }
-                        jwt.sign(
-                            payload,
-                            process.env.JWT_SECRET,
-                            { expiresIn: 86400 },
+                        // Sign the JWT
+                        jwt.sign({ user: dbUser }, process.env.JWT_SECRET, { expiresIn: '10s' },
                             (err, token) => {
                                 if(err) {
                                     return res.json({message: err})
+                                } else {
+                                    res.cookie("token", token, { httpOnly: true })
+                                    res.redirect("http://localhost:3000")
                                 }
-                                return res.json({
-                                    message: "Login Successful",
-                                    token: "Bearer" + token
-                                })
                             }
-                        )
+                        );
+                        
                     } else {
                         return res.json({
                             message: "Invalid email or password"
@@ -68,6 +68,11 @@ exports.login = (req, res) => {
         })
 };
 
+exports.logoutUser = async (req, res, next) => {
+    res.clearCookie("token");
+    res.send({ success: true });
+  };
+
 exports.forgotPassword = (req, res, next) => {
     res.render('forgotpassword');
 };
@@ -75,3 +80,17 @@ exports.forgotPassword = (req, res, next) => {
 exports.resetPassword = (req, res, next) => {
     res.send('Reset Password Route');
 };
+
+exports.checkAuth = (req, res, next) => {
+    let token = req.cookies.token;
+
+    try {
+        const user = jwt.verify(token, process.env.JWT_SECRET);
+        req.user = user;
+        res.json(req.user);
+    } catch {
+        res.clearCookie("token");
+        res.redirect('/');
+        return;
+    }
+}
