@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const { ObjectId } = require('mongodb');
+const Schema = mongoose.Schema;
 
 // Initialize Product Schema
 const productSchema = new Schema({
@@ -22,6 +23,11 @@ const productSchema = new Schema({
     imageURL: {
         type: String,
         required: true
+    },
+    reviews: [],
+    rating: {
+        type: Number,
+        default: 0
     }
 }, { timestamps: true });
 

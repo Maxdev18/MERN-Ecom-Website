@@ -26,7 +26,7 @@ export const Login = () => {
                     </div>
                     <button type="submit" className="button-login">Login</button>
                 </form>
-                <a href="/register" className="link-register" onClick={handleLogin}>Register</a>
+                <a href="/register" className="link-register">Register</a>
             </div>
         </div>
     )

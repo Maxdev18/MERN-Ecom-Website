@@ -16,6 +16,8 @@ const PORT = process.env.PORT || 5000;
 const authRoutes = require('../routes/auth');
 const homeRoutes = require('../routes/homeroutes');
 const productRoutes = require('../routes/products');
+const mainRoutes = require('../routes/mainRoutes');
+const reviewRoutes = require('../routes/reviews');
 
 dotenv.config();
 
@@ -37,7 +39,9 @@ app.use(express.urlencoded({ extended: true }));
     // Routes
     app.use('/auth', authRoutes);
     app.use('/', homeRoutes);
+    app.use('', mainRoutes);
     app.use('/api', productRoutes);
+    app.use('/api/reviews', reviewRoutes);
 
     app.get('/h', (req, res) => {
         res.send('Hello There')

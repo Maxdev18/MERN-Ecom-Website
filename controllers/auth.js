@@ -48,7 +48,7 @@ exports.login = (req, res, next) => {
                 .then(isCorrect => {
                     if(isCorrect) {
                         // Sign the JWT
-                        jwt.sign({ user: dbUser }, process.env.JWT_SECRET, { expiresIn: '10s' },
+                        jwt.sign({ user: dbUser }, process.env.JWT_SECRET, { expiresIn: '60m' },
                             (err, token) => {
                                 if(err) {
                                     return res.json({message: err})
@@ -82,13 +82,16 @@ exports.resetPassword = (req, res, next) => {
 };
 
 exports.checkAuth = (req, res, next) => {
+    //Retrieves token
     let token = req.cookies.token;
 
+    //Try to verify token and return data if verified
     try {
         const user = jwt.verify(token, process.env.JWT_SECRET);
         req.user = user;
         res.json(req.user);
     } catch {
+        //Clear cookie with token if expired or doesn't exist
         res.clearCookie("token");
         res.redirect('/');
         return;
