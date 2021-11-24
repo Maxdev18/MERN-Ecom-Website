@@ -19,10 +19,13 @@ export const ProductPage = (props) => {
                 return data;
             })
             .catch(err => {
-                console.log(err)
+                console.log(err);
             });
-        console.log(res.data);
-        setProduct(res.data);
+        
+        if(res) {
+            setProduct(res.data);
+        }
+        
         }
         getProduct();
     }, []);

@@ -26,7 +26,7 @@ const reviewSchema = new Schema({
     rating: {
         type: Number,
         required: true
-    }
+    },
 }, { timestamps: true });
 
 

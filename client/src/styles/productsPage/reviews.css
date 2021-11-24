@@ -144,3 +144,37 @@
         border: 1px solid rgba(0,0,0,0);
         color: white;
     }
+
+/* Review List Component */
+
+/* Main list container */
+.list-reviews-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+    /* Other Containers */
+    .user-review-container {
+        width: 100%;
+        height: auto;
+        margin-bottom: 60px;
+    }
+
+.user-review-header {
+    display: block;
+}
+
+.user-rating-container {
+    display: flex;
+}
+
+.user-headline {
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.reviews-header {
+    margin-bottom: 20px;
+}

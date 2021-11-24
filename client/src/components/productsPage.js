@@ -15,7 +15,6 @@ export const ProductsPage = () => {
                 .catch(err => {
                     console.log(err)
                 });
-            console.log(res.data);
             setProducts(res.data);
         }
         fetchProducts();

@@ -1,16 +1,28 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import searchBar from '../photos/search-icon.png';
-import '../styles/components/nav.css'; 
+import '../styles/components/nav.css';
+import { UserContext } from '../Contexts/UserContext';
 
-export const Nav = (props) => {
+const Axios = require('axios');
+
+export const Nav = () => {
+    const {user, setUser} = useContext(UserContext);
+
     // Login Object
     const ifLoggedIn = {
         checkLogin: () => {
-            if(props.isLoggedIn) {
+            if(user) {
                 return (
-                    <a className="btn-login" href="/login">Logout</a>
+                    <Link to="/login">
+                        <button className="btn-login" onClick={ async () => {
+                            //Request logout to server
+                            await Axios.get('/auth/logout');
+
+                            setUser(null);
+                            }}>Logout</button>
+                    </Link>
                 )
             } else {
                 return (

@@ -2,9 +2,10 @@ import * as React from 'react';
 import Axios from 'axios';
 import StarRatings from 'react-star-ratings';
 import '../styles/productsPage/reviews.css';
+import { ReviewListComp } from '../components/reviewList';
+import { UserContext } from '../Contexts/UserContext';
 
 export const ReviewComp = (props) => {
-
     //Get state for review ratings
     let [reviewData, setReviewData] = React.useState({
         headline: '',
@@ -13,6 +14,7 @@ export const ReviewComp = (props) => {
         rating: 0
     })
     let [reviewSeen, setReviewSeen] = React.useState(false);
+    const { user, setUser } = React.useContext(UserContext);
 
     const ReviewWrapper = () => {
         return (
@@ -30,7 +32,11 @@ export const ReviewComp = (props) => {
                             name="rating"/>
                         <p className='rating'>{Number(props.product.rating).toFixed(1)}</p>
                     </div>
-                    <button className="write-review-link" onClick={togglePop}>Write a Review</button>
+                    {user ? <button className="write-review-link" onClick={togglePop}>Write a Review</button> : null}
+                </div>
+                <div className="list-reviews-container">
+                   <ReviewListComp productData={props} />
+                    
                 </div>
             </div>
         )
@@ -38,7 +44,6 @@ export const ReviewComp = (props) => {
 
     //Write a review pop up component
     var id = props.product._id;
-    console.log(id)
 
     //Post review
     const publishReview = (e) => {

@@ -1,12 +1,7 @@
 import React from 'react';
 import '../styles/loginpage/login.css'
 
-const Axios = require('axios');
-
 export const Login = () => {
-    function handleLogin() {
-        Axios.post('/auth/login')
-    }
 
     return (
         <div className="main-login-container">
