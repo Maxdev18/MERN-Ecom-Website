@@ -30,7 +30,7 @@ exports.register = async (req, res) => {
         dbUser.save(err => {
             console.log(err);
         });
-        res.json({message: "Successfully Registered!"});
+        res.status(200).redirect("http://localhost:3000");
     }
 };
 
