@@ -73,3 +73,19 @@ exports.addToCartPost = async (req, res, next) => {
     })
   }
 };
+
+exports.getCart = async (req, res, next) => {
+  const userId = req.params.id;
+  console.log(userId);
+
+  let cart = await Cart.findById(userId, (err, data) => {
+    if(err) {
+      console.log(err);
+    } else {
+      return data;
+    }
+  });
+
+  res.body = cart;
+  res.status(200).json(res.body);
+}
