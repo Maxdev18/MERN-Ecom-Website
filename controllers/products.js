@@ -39,6 +39,11 @@ exports.addToCartPost = async (req, res, next) => {
       return data;
     });
 
+  const user = await User.findById(userId)
+    .then(data => {
+      return data;
+    });
+
   if(cart) {
     let itemIndex = cart.products.findIndex(p => p.product._id == id);
     

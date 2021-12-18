@@ -24,7 +24,8 @@ exports.register = async (req, res) => {
             firstName: newUser.firstName.toLowerCase(),
             lastName: newUser.lastName.toLowerCase(),
             email: newUser.email.toLowerCase(),
-            password: newUser.password
+            password: newUser.password,
+
         });
 
         dbUser.save(err => {
