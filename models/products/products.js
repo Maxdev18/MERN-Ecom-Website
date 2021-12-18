@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { ObjectId } = require('mongodb');
 const Schema = mongoose.Schema;
 
 // Initialize Product Schema
