@@ -16,10 +16,10 @@ export const Home = () => {
     const fetchProductData = async () => {
         await axios.get('api/products')
             .then(jsonRes => {
-                setProducts(jsonRes.data)
+                setProducts(jsonRes.data);
                 console.log(jsonRes.data)
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
     };
 
     return (
