@@ -64,6 +64,9 @@
 
     .add-to-cart-btn {
         float: right;
+        height: 45px;
+        cursor: pointer;
+        background-color: white;
     }
 
     .btn:hover {
