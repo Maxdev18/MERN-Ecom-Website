@@ -1,7 +1,7 @@
 // Imports 
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { UserContext } from './Contexts/UserContext';
+import { UserContext, CartContext } from './Contexts/UserContext';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
@@ -32,19 +32,44 @@ const App = () => {
             if(userData) {
                 setUser(userData);
                 setIsLoggedIn(true);
-                console.log(userData);
+
+                await axios.get(`/api/get-cart/${userData._id}`)
+                    .then(data => {
+                        return setCartItems(data.data.products);
+                    });
             } else {
+                setCartItems([]);
                 setIsLoggedIn(false);
             }
         }
         retrieveData();
-    }, [])
+    }, []);
+
+    const onAdd = async () => {
+        //Version 2 Using REST API
+        await axios.get(`/api/get-cart/${user._id}`)
+            .then(data => {
+                return setCartItems(data.data.products);
+            });
+    }
+
+    const [cartItems, setCartItems] = useState([]);
+    //const cart = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
+    
+    const onRemove = (product) => {
+        const id = (element) => element.id === product.id;
+        const index = cartItems.findIndex(id);
+        cartItems.splice(index, 1);
+        setCartItems([...cartItems]);
+        console.log(cartItems);
+    };
 
     return (
         <Router>
             <UserContext.Provider value={{user, setUser}}>
+            <CartContext.Provider value={{onAdd}} >
                 <div className="container">
-                    <Nav isLoggedIn={ isLoggedIn }/>
+                    <Nav isLoggedIn={ isLoggedIn } countCartItems={cartItems.length} cartItems={cartItems} />
                     <Route exact path="/" component={Home} />
                     <Route exact path="/about" component={About} />
                     <Route exact path="/contact" component={Contact} />
@@ -52,9 +77,10 @@ const App = () => {
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/forgot-password" component={ForgotPassword}/>
                     <Route exact path="/products" component={ProductsPage} />
-                    <Route path="/products/:id" component={ProductPage} />
+                    <Route path="/products/:id" component={ProductPage}/>
                     <Footer />
                 </div>
+            </CartContext.Provider>
             </UserContext.Provider>
         </Router>
     )

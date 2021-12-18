@@ -3,13 +3,16 @@ import Axios from 'axios';
 import { ReviewComp } from '../components/review';
 import StarRatings from 'react-star-ratings';
 import '../styles/productsPage/productPage.css';
+import { UserContext } from '../Contexts/UserContext';
+import { CartContext } from '../Contexts/UserContext';
 
 export const ProductPage = (props) => {
-    //Set product state
+    //Set state
     let [product, setProduct] = React.useState([]);
+    const {user, setUser} = React.useContext(UserContext);
 
     //Get product ID from the URL
-    var id = props.match.params.id;
+    const id = props.match.params.id;
 
     // //Get product data from the back-end
     React.useEffect(() => {
@@ -27,12 +30,19 @@ export const ProductPage = (props) => {
         }
         
         }
+        
         getProduct();
     }, []);
 
     //Add to cart
-    const addToCart = () => {
+    const { onAdd } = React.useContext(CartContext);
+    const addToCart = async () => {
+        //Update cart document in database
+        if(user) {
+            await Axios.post(`/api/atc/${id}`, user);
+        }
 
+        onAdd();
     }
 
     return(
@@ -70,7 +80,8 @@ export const ProductPage = (props) => {
                             <p className="product-stock">{product.countInStock} left in stock</p>
                             <div className="button-container">
                                 <a className="buy-btn btn" href="/api/buy">Buy Now</a>
-                                <a className="add-to-cart-btn btn" href="/api/add-to-cart" onClick={addToCart}>Add To Cart</a>
+                                {user ? <button className="add-to-cart-btn btn" onClick={addToCart}>Add To Cart</button> : 
+                                    <a href="/login" className="add-to-cart-btn btn">Add To Cart</a>}
                             </div>
                         </div>
                     </div>
