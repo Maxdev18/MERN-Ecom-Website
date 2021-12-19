@@ -1,14 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import searchBar from '../photos/search-icon.png';
 import '../styles/components/nav.css';
-import { UserContext } from '../Contexts/UserContext';
+import { UserContext, CartContext } from '../Contexts/UserContext';
 
 const Axios = require('axios');
 
-export const Nav = (props) => {
+export const Nav = () => {
     const {user, setUser} = useContext(UserContext);
-    const [ cartItems, setCartItems ] = React.useState([...props.cartItems]);
+    const { cartItems, setCartItems } = useContext(CartContext);
+    const [ totalCart, setTotalCart ] = React.useState(0);
 
     // Login Object
     const ifLoggedIn = {
@@ -20,7 +21,6 @@ export const Nav = (props) => {
                             //Request logout to server
                             await Axios.get('/auth/logout');
                             
-                            localStorage.clear();
                             setUser(null);
                             setCartItems([]);
                             }}>Logout</button>
@@ -34,7 +34,17 @@ export const Nav = (props) => {
         }
     };
 
-    
+    let total = 0;
+    useEffect(() => {
+        //Calculate total cart items
+        if(cartItems) {
+            console.log(cartItems);
+            for (let i = 0; i < cartItems.length; i++) {
+                total += cartItems[i].quantity;
+            }
+            setTotalCart(total);
+        }
+    }, [cartItems]);
 
     return (
             <nav className="nav-container">
@@ -57,7 +67,7 @@ export const Nav = (props) => {
                     </div>
 
                     <div className="cart-container">
-                        <Link to="/cart/user/:id"><h4 className="cart">Cart: {cartItems.length}</h4></Link>
+                        <Link to="/cart/user/:id"><h4 className="cart">Cart: {totalCart}</h4></Link>
                     </div>
                 </div>
             </nav>
