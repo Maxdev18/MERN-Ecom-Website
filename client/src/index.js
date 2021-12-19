@@ -35,7 +35,7 @@ const App = () => {
 
                 await axios.get(`/api/get-cart/${userData._id}`)
                     .then(data => {
-                        return setCartItems(data.data.products);
+                        setCartItems(data.data.products);
                     });
             } else {
                 setCartItems([]);
@@ -54,7 +54,6 @@ const App = () => {
     }
 
     const [cartItems, setCartItems] = useState([]);
-    //const cart = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
     
     const onRemove = (product) => {
         const id = (element) => element.id === product.id;
@@ -67,7 +66,7 @@ const App = () => {
     return (
         <Router>
             <UserContext.Provider value={{user, setUser}}>
-            <CartContext.Provider value={{onAdd}} >
+            <CartContext.Provider value={{cartItems, setCartItems, onAdd}} >
                 <div className="container">
                     <Nav isLoggedIn={ isLoggedIn } countCartItems={cartItems.length} cartItems={cartItems} />
                     <Route exact path="/" component={Home} />
