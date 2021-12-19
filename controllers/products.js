@@ -54,7 +54,7 @@ exports.addToCartPost = async (req, res, next) => {
     } else {
       cart.products.push({ product, quantity: 1 });
     }
-    console.log(cart);
+    
     await cart.save(err => {
       if(err) {
         console.log(err);
