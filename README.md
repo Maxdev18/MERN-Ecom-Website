@@ -21,3 +21,4 @@ I have learned a lot from this project. Starting from zero knowledge about full 
 - Search bar functionality
 - Payment system
 - 3rd party email service for password reset and contact
+- User cart UI
