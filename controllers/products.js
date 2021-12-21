@@ -15,7 +15,23 @@ exports.getProductData = async (req, res) => {
   return products;
 };
 
-exports.getProducts = async (req, res) => {
+exports.getProducts = async (req, res, next) => {
+  const searchQuery = req.query.search ? req.query.search : false;
+
+  // Scalable pagination
+  if(searchQuery) {
+    const PAGE_SIZE = 12;
+    const page = parseInt(req.query.page || "0");
+    const total = await Products.countDocuments({});
+    const products = await Products.find({})
+      .limit(PAGE_SIZE)
+      .skip(PAGE_SIZE * page);
+    res.json({
+      totalPages: Math.ceil(total / PAGE_SIZE),
+      products
+    });
+  }
+
   let products = await Products.find({})
     .then(data => {
       return data;
@@ -94,3 +110,20 @@ exports.getCart = async (req, res, next) => {
   res.body = cart;
   res.status(200).json(res.body);
 }
+
+exports.searchQuery = async (req, res, next) => {
+  const searchQuery = req.params.search;
+
+  const productList = await Products.find({}, err => {
+    if(err) return res.json({ err });
+  });
+
+  const filteredResults = productList.filter(item => {
+    return searchQuery.toLowerCase().includes(item.name.toLowerCase() || item.description.toLowerCase()) ? item : null;
+  });
+
+  console.log(productList);
+  //console.log(filteredResults);
+
+  res.status(200).send(productList);
+};
