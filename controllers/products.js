@@ -16,7 +16,10 @@ exports.getProductData = async (req, res) => {
 };
 
 exports.getProducts = async (req, res, next) => {
-  const searchQuery = req.query.search ? req.query.search : false;
+  console.log(req.query);
+  const searchQuery = req.query ? req.query.search : false;
+
+  console.log(searchQuery);
 
   // Scalable pagination
   if(searchQuery) {
@@ -26,19 +29,25 @@ exports.getProducts = async (req, res, next) => {
     const products = await Products.find({})
       .limit(PAGE_SIZE)
       .skip(PAGE_SIZE * page);
-    res.json({
-      totalPages: Math.ceil(total / PAGE_SIZE),
-      products
-    });
-  }
 
-  let products = await Products.find({})
+    console.log(products);
+    const filteredResults = products.filter(item => {
+      return searchQuery.toLowerCase().includes(item.name.toLowerCase() || item.description.toLowerCase()) ? item : null;
+    });
+
+    res.status(200).json({
+      totalPages: Math.ceil(total / PAGE_SIZE),
+      filteredResults
+    });
+  } else {
+    let products = await Products.find({})
     .then(data => {
       return data;
     });
     
-  res.body = products;
-  res.send(res.body);
+    res.body = products;
+    res.send(res.body);
+  }
 };
 
 exports.addToCartPost = async (req, res, next) => {
@@ -110,20 +119,3 @@ exports.getCart = async (req, res, next) => {
   res.body = cart;
   res.status(200).json(res.body);
 }
-
-exports.searchQuery = async (req, res, next) => {
-  const searchQuery = req.params.search;
-
-  const productList = await Products.find({}, err => {
-    if(err) return res.json({ err });
-  });
-
-  const filteredResults = productList.filter(item => {
-    return searchQuery.toLowerCase().includes(item.name.toLowerCase() || item.description.toLowerCase()) ? item : null;
-  });
-
-  console.log(productList);
-  //console.log(filteredResults);
-
-  res.status(200).send(productList);
-};
