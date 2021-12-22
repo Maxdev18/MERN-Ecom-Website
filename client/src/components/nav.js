@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import searchBar from '../photos/search-icon.png';
 import '../styles/components/nav.css';
 import { UserContext, CartContext } from '../Contexts/UserContext';
@@ -50,9 +50,10 @@ export const Nav = () => {
     }, [cartItems]);
 
     // Search item function
-    async function searchItem() {
-        const response = await fetch(`/products?search=${search}&page=${pages}`)
+    async function searchQuery() {
+        const response = await axios.get(`/api/products?search=${search}&page=${pages}`)
             .then(({ totalPages, filteredResults }) => {
+                console.log(filteredResults);
                 setProducts(filteredResults);
                 setPages(totalPages);
             });
@@ -60,7 +61,7 @@ export const Nav = () => {
         console.log(response);
         console.log(products);  
         console.log("Pages: " + pages);
-    }
+    };
 
     return (
             <nav className="nav-container">
@@ -74,7 +75,7 @@ export const Nav = () => {
                 <div className="nav-sub-container">
                     <div className="searchbar-container">
                         <input value={search} className="search-bar" placeholder="search..." onChange={e => setSearch(e.currentTarget.value)}/> 
-                        <Link to={`/products?search=${search}&page=${pages}`}><img src={searchBar} onClick={searchItem}/></Link>
+                        <button onClick={searchQuery}>Search</button>
                     </div>
                     <div className="login-container">
                         {ifLoggedIn.checkLogin()}
