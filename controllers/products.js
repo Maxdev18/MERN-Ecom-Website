@@ -17,7 +17,7 @@ exports.getProductData = async (req, res) => {
 
 exports.getProducts = async (req, res, next) => {
   const searchQuery = req.query ? req.query.search : false;
-  console.log(req.query.page);
+  
   // Scalable pagination
   if(searchQuery) {
     const PAGE_SIZE = 12;
@@ -30,7 +30,6 @@ exports.getProducts = async (req, res, next) => {
       products = await Products.find({}).limit(PAGE_SIZE).skip(PAGE_SIZE * page);
     }
   
-    console.log(products);
     const filteredResults = products.filter(item => {
       const splitQuery = searchQuery.toLowerCase().split(' ');
       for(let i = 0; i <= splitQuery.length; i++) {
@@ -38,8 +37,6 @@ exports.getProducts = async (req, res, next) => {
           item.description.toLowerCase().includes(splitQuery[i]) ? item : null;
       }
     });
-
-    console.log("Line 37: " + filteredResults);
 
     res.status(200).json({
       totalPages: Math.ceil(total / PAGE_SIZE),
