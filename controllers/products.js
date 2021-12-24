@@ -17,24 +17,29 @@ exports.getProductData = async (req, res) => {
 
 exports.getProducts = async (req, res, next) => {
   const searchQuery = req.query ? req.query.search : false;
-
+  console.log(req.query.page);
   // Scalable pagination
   if(searchQuery) {
     const PAGE_SIZE = 12;
     const page = parseInt(req.query.page || "0");
     const total = await Products.countDocuments({});
-    const products = await Products.find({}).limit(PAGE_SIZE).skip(PAGE_SIZE * page);
-
+    let products;
+    if(req.query.page == 1) {
+      products = await Products.find({}).limit(PAGE_SIZE).skip(0);
+    } else {
+      products = await Products.find({}).limit(PAGE_SIZE).skip(PAGE_SIZE * page);
+    }
+  
+    console.log(products);
     const filteredResults = products.filter(item => {
       const splitQuery = searchQuery.toLowerCase().split(' ');
-
       for(let i = 0; i <= splitQuery.length; i++) {
         return item.name.toLowerCase().includes(splitQuery[i]) || 
           item.description.toLowerCase().includes(splitQuery[i]) ? item : null;
       }
     });
 
-    console.log(filteredResults);
+    console.log("Line 37: " + filteredResults);
 
     res.status(200).json({
       totalPages: Math.ceil(total / PAGE_SIZE),
