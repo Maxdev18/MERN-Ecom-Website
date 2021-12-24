@@ -13,6 +13,7 @@ export const Nav = () => {
     const [ totalCart, setTotalCart ] = React.useState(0);
     const [ search, setSearch ] = React.useState("");
     const [ pages, setPages ] = React.useState(0);
+    const [ currentPage, setCurrentPage ] = React.useState(1);
     const [ products, setProducts ] = React.useState([]);
 
     // Login Object
@@ -51,16 +52,12 @@ export const Nav = () => {
 
     // Search item function
     async function searchQuery() {
-        const response = await axios.get(`/api/products?search=${search}&page=${pages}`)
-            .then(({ totalPages, filteredResults }) => {
-                console.log(filteredResults);
-                setProducts(filteredResults);
-                setPages(totalPages);
+        await axios.get(`/api/products?search=${search}&page=${currentPage}`)
+            .then((res) => {
+                const response = res.data;
+                setProducts(response.filteredResults);
+                setPages(response.totalPages);
             });
-
-        console.log(response);
-        console.log(products);  
-        console.log("Pages: " + pages);
     };
 
     return (
@@ -76,6 +73,7 @@ export const Nav = () => {
                     <div className="searchbar-container">
                         <input value={search} className="search-bar" placeholder="search..." onChange={e => setSearch(e.currentTarget.value)}/> 
                         <button onClick={searchQuery}>Search</button>
+                        <h3>{products[0] ? products[0].name : null}</h3>
                     </div>
                     <div className="login-container">
                         {ifLoggedIn.checkLogin()}
