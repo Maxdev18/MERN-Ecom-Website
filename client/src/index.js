@@ -21,6 +21,8 @@ const App = () => {
     //Declare state variables
     let [isLoggedIn, setIsLoggedIn] = useState(false);
     let [user, setUser] = useState(null);
+    const [ currentPage, setCurrentPage ] = React.useState(1);
+    const [ products, setProducts ] = React.useState([]);
 
     //Authenticates the user on every subsequent request
     useEffect( () => {
@@ -63,19 +65,30 @@ const App = () => {
         console.log(cartItems);
     };
 
+    //Search Item Function
+    async function searchQuery(search, currentPage) {
+        await axios.get(`/api/products?search=${search}&page=${currentPage}`)
+            .then((res) => {
+                const response = res.data;
+                setProducts(response.filteredResults);
+                setCurrentPage(response.totalPages);
+            });
+      };
+
     return (
         <Router>
             <UserContext.Provider value={{user, setUser}}>
             <CartContext.Provider value={{cartItems, setCartItems, onAdd}} >
                 <div className="container">
-                    <Nav isLoggedIn={ isLoggedIn } countCartItems={cartItems.length} cartItems={cartItems} />
+                    <Nav isLoggedIn={ isLoggedIn } countCartItems={cartItems.length} cartItems={cartItems} searchQ={{searchQuery}} queryString={{currentPage, setCurrentPage, }}/>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/about" component={About} />
                     <Route exact path="/contact" component={Contact} />
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/forgot-password" component={ForgotPassword}/>
-                    <Route path="/products" component={ProductsPage} />
+                    <Route path="/products" render={(props) => (
+                        <ProductsPage {...props} searchResults={{products, setProducts}}/>)} />
                     <Route path="/products/:id" component={ProductPage}/>
                     <Footer />
                 </div>

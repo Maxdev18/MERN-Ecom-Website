@@ -1,23 +1,26 @@
 import * as React from 'react';
 import Axios from 'axios';
+import ReactPaginate from 'react-paginate';
 import '../styles/productsPage/productsPage.css';
 
-export const ProductsPage = () => {
-    const [products, setProducts] = React.useState([]);
+export const ProductsPage = (props) => {
+    const { products, setProducts } = props.searchResults;
 
     //Get products from back-end api
     React.useEffect(() => {
-        async function fetchProducts() {
-            let res = await Axios.get('/api/products')
-                .then(data => {
-                    return data;
-                })
-                .catch(err => {
-                    console.log(err)
-                });
-            setProducts(res.data);
+        if(!window.location.search) {
+            async function fetchProducts() {
+                let res = await Axios.get('/api/products')
+                    .then(data => {
+                        return data;
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    });
+                setProducts(res.data);
+            }
+            fetchProducts();
         }
-        fetchProducts();
     }, []);
 
     return(
@@ -34,6 +37,16 @@ export const ProductsPage = () => {
                     );
                 })}
             </div>
+            {/* Pagination component */}
+            {/* <ReactPaginate 
+                breakLabel="..."
+                nextLabel="next >"
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={5}
+                pageCount={pageCount}
+                previousLabel="< previous"
+                renderOnZeroPageCount={null}
+            /> */}
         </div>
     );
 };
