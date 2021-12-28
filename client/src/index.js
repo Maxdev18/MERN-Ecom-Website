@@ -28,6 +28,11 @@ const App = () => {
     useEffect( () => {
         //Retrieves token from the back-end then
         //validates in the front-end
+        const urlParams = new URLSearchParams(window.location.search);
+        const search = urlParams.get('search');
+        if(search !== '') {
+            searchQuery(search, currentPage);
+        }
         async function retrieveData() {
             let token = await axios.get('/auth/checkauth');
             let userData = token.data.user;
@@ -68,9 +73,11 @@ const App = () => {
     //Search Item Function
     async function searchQuery(search, currentPage) {
         if(search) {
+            console.log(currentPage);
             await axios.get(`/api/products?search=${search}&page=${currentPage}`)
             .then((res) => {
                 const response = res.data;
+                console.log(response);
                 setProducts(response.filteredResults);
                 setCurrentPage(response.totalPages);
             });
@@ -83,7 +90,7 @@ const App = () => {
             <UserContext.Provider value={{user, setUser}}>
             <CartContext.Provider value={{cartItems, setCartItems, onAdd}} >
                 <div className="container">
-                    <Nav isLoggedIn={ isLoggedIn } countCartItems={cartItems.length} cartItems={cartItems} searchQ={{searchQuery}} queryString={{currentPage, setCurrentPage, }}/>
+                    <Nav isLoggedIn={ isLoggedIn } countCartItems={cartItems.length} cartItems={cartItems} searchQ={{searchQuery}} queryString={{currentPage, setCurrentPage}}/>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/about" component={About} />
                     <Route exact path="/contact" component={Contact} />
@@ -91,7 +98,7 @@ const App = () => {
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/forgot-password" component={ForgotPassword}/>
                     <Route path="/products" render={(props) => (
-                        <ProductsPage {...props} searchResults={{products, setProducts}}/>)} />
+                        <ProductsPage {...props} searchResults={{products, setProducts, currentPage, setCurrentPage}} searchQ={{searchQuery}}/>)} />
                     <Route path="/products/:id" component={ProductPage}/>
                     <Footer />
                 </div>

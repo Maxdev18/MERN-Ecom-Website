@@ -20,7 +20,7 @@ exports.getProducts = async (req, res, next) => {
   
   // Scalable pagination
   if(searchQuery) {
-    const PAGE_SIZE = 12;
+    const PAGE_SIZE = 4;
     const page = parseInt(req.query.page || "0");
     const total = await Products.countDocuments({});
     let products;
