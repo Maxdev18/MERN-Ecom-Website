@@ -67,12 +67,15 @@ const App = () => {
 
     //Search Item Function
     async function searchQuery(search, currentPage) {
-        await axios.get(`/api/products?search=${search}&page=${currentPage}`)
+        if(search) {
+            await axios.get(`/api/products?search=${search}&page=${currentPage}`)
             .then((res) => {
                 const response = res.data;
                 setProducts(response.filteredResults);
                 setCurrentPage(response.totalPages);
             });
+        }
+        return null;
       };
 
     return (

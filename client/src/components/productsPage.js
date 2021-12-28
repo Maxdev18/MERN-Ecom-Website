@@ -8,7 +8,7 @@ export const ProductsPage = (props) => {
 
     //Get products from back-end api
     React.useEffect(() => {
-        if(!window.location.search) {
+        if(window.location.search === '') {
             async function fetchProducts() {
                 let res = await Axios.get('/api/products')
                     .then(data => {
