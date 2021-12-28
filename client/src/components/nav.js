@@ -47,7 +47,7 @@ export const Nav = (props) => {
     }, [cartItems]);
 
     function searchItem() {
-        props.searchQ.searchQuery(search, currentPage)
+        props.searchQ.searchQuery(search, currentPage);
     }
 
     return (
