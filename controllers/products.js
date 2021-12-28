@@ -8,7 +8,7 @@ exports.getProductData = async (req, res) => {
         console.log(err);
     }
     else {
-      res.send(data);
+      res.status(200).send(data);
     }
   });
 
@@ -20,26 +20,25 @@ exports.getProducts = async (req, res, next) => {
   
   // Scalable pagination
   if(searchQuery) {
-    const PAGE_SIZE = 4;
+    const PAGE_SIZE = 6;
     const page = parseInt(req.query.page || "0");
-    const total = await Products.countDocuments({});
     let products;
-    if(req.query.page == 1) {
+    if(page == 1) {
       products = await Products.find({}).limit(PAGE_SIZE).skip(0);
     } else {
-      products = await Products.find({}).limit(PAGE_SIZE).skip(PAGE_SIZE * page);
+      products = await Products.find({}).limit(PAGE_SIZE).skip(PAGE_SIZE * (page - 1));
     }
   
     const filteredResults = products.filter(item => {
       const splitQuery = searchQuery.toLowerCase().split(' ');
+      console.log(splitQuery);
       for(let i = 0; i <= splitQuery.length; i++) {
-        return item.name.toLowerCase().includes(splitQuery[i]) || 
-          item.description.toLowerCase().includes(splitQuery[i]) ? item : null;
+        return item.name.toLowerCase().includes(splitQuery[i]) || item.description.toLowerCase().includes(splitQuery[i + 1]) ? item : null;
       }
     });
-
+    
     res.status(200).json({
-      totalPages: Math.ceil(total / PAGE_SIZE),
+      totalPages: Math.ceil(filteredResults.length / PAGE_SIZE),
       filteredResults
     });
   } else {

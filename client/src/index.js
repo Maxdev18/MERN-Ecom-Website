@@ -21,8 +21,9 @@ const App = () => {
     //Declare state variables
     let [isLoggedIn, setIsLoggedIn] = useState(false);
     let [user, setUser] = useState(null);
-    const [ currentPage, setCurrentPage ] = React.useState(1);
+    const [ totalPages, setTotalPages ] = React.useState(0);
     const [ products, setProducts ] = React.useState([]);
+    const [ currentPage, setCurrentPage ] = React.useState(1);
 
     //Authenticates the user on every subsequent request
     useEffect( () => {
@@ -73,13 +74,12 @@ const App = () => {
     //Search Item Function
     async function searchQuery(search, currentPage) {
         if(search) {
-            console.log(currentPage);
             await axios.get(`/api/products?search=${search}&page=${currentPage}`)
             .then((res) => {
                 const response = res.data;
-                console.log(response);
                 setProducts(response.filteredResults);
-                setCurrentPage(response.totalPages);
+                setTotalPages(response.totalPages);
+                setCurrentPage(currentPage);
             });
         }
         return null;
@@ -97,9 +97,9 @@ const App = () => {
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/forgot-password" component={ForgotPassword}/>
-                    <Route path="/products" render={(props) => (
-                        <ProductsPage {...props} searchResults={{products, setProducts, currentPage, setCurrentPage}} searchQ={{searchQuery}}/>)} />
-                    <Route path="/products/:id" component={ProductPage}/>
+                    <Route exact path="/products" render={(props) => (
+                        <ProductsPage {...props} searchResults={{products, setProducts, totalPages, setTotalPages}} searchQ={{searchQuery}}/>)} />
+                    <Route exact path="/products/:id" component={ProductPage}/>
                     <Footer />
                 </div>
             </CartContext.Provider>

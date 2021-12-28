@@ -5,7 +5,7 @@ import '../styles/productsPage/productsPage.css';
 
 export const ProductsPage = (props) => {
     const { products, setProducts } = props.searchResults;
-    const { currentPage, setCurrentPage } = props.searchResults;
+    const { totalPages, setTotalPages } = props.searchResults;
 
     //Get products from back-end api
     React.useEffect(() => {
@@ -27,8 +27,7 @@ export const ProductsPage = (props) => {
     const handlePageClick = (event) => {
         const urlParams = new URLSearchParams(window.location.search);
         const search = urlParams.get('search');
-        props.searchQ.searchQuery(search, (event.selected));
-        setCurrentPage(event.selected + 1);
+        props.searchQ.searchQuery(search, (event.selected + 1));
       };
 
     return(
@@ -50,8 +49,8 @@ export const ProductsPage = (props) => {
                 breakLabel="..."
                 nextLabel="next >"
                 onPageChange={handlePageClick}
-                pageRangeDisplayed={5}
-                pageCount={currentPage}
+                pageRangeDisplayed={3}
+                pageCount={totalPages}
                 previousLabel="< previous"
                 renderOnZeroPageCount={null}
                 className='pagination-container'
