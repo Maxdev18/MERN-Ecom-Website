@@ -3,7 +3,10 @@
     width: 90%;
     height: 100%;
     margin-bottom: 60px;
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .products-container {
@@ -36,3 +39,28 @@
     height: 250px;
 }
 
+/* Pagination Component */
+.pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 60px;
+    padding: 0px;
+    margin-top: 50px;
+}
+
+.pagination-container li a {
+    color: black;
+    width: 100%;
+    cursor: pointer;
+}
+
+.pagination-container li.next, .pagination-container li.previous {
+    height: 100%;
+    width: 16%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: hidden;
+}
