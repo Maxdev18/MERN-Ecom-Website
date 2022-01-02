@@ -18,6 +18,7 @@ const homeRoutes = require('../routes/homeroutes');
 const productRoutes = require('../routes/products');
 const mainRoutes = require('../routes/mainRoutes');
 const reviewRoutes = require('../routes/reviews');
+const checkoutRoutes = require('../routes/checkout');
 
 dotenv.config();
 
@@ -42,6 +43,7 @@ app.use(express.urlencoded({ extended: true }));
     app.use('', mainRoutes);
     app.use('/api', productRoutes);
     app.use('/api/reviews', reviewRoutes);
+    app.use('/cart', checkoutRoutes);
 
     app.get('/h', (req, res) => {
         res.send('Hello There')
