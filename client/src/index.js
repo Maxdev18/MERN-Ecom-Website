@@ -16,6 +16,8 @@ import { ForgotPassword } from './components/forgotPW';
 import { Contact } from './components/contact';
 import { ProductsPage } from './components/productsPage';
 import { ProductPage } from './components/productPage';
+import { Cart } from './components/cart';
+import { Checkout } from './components/checkout';
 
 const App = () => {
     //Declare state variables
@@ -88,18 +90,20 @@ const App = () => {
     return (
         <Router>
             <UserContext.Provider value={{user, setUser}}>
-            <CartContext.Provider value={{cartItems, setCartItems, onAdd}} >
+            <CartContext.Provider value={{cartItems, setCartItems, onAdd}}>
                 <div className="container">
-                    <Nav isLoggedIn={ isLoggedIn } countCartItems={cartItems.length} cartItems={cartItems} searchQ={{searchQuery}} queryString={{currentPage, setCurrentPage}}/>
+                    <Nav isLoggedIn={ isLoggedIn } countCartItems={cartItems.length} cartItems={cartItems} searchQ={{searchQuery}} queryString={{currentPage, setCurrentPage}} />
                     <Route exact path="/" component={Home} />
                     <Route exact path="/about" component={About} />
                     <Route exact path="/contact" component={Contact} />
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/register" component={Register} />
-                    <Route exact path="/forgot-password" component={ForgotPassword}/>
+                    <Route exact path="/forgot-password" component={ForgotPassword} />
+                    <Route exact path="/cart/user/:id" component={Cart} />
+                    <Route exact path="/cart/user/:id/checkout" component={Checkout} />
                     <Route exact path="/products" render={(props) => (
                         <ProductsPage {...props} searchResults={{products, setProducts, totalPages, setTotalPages}} searchQ={{searchQuery}}/>)} />
-                    <Route exact path="/products/:id" component={ProductPage}/>
+                    <Route exact path="/products/:id" component={ProductPage} />
                     <Footer />
                 </div>
             </CartContext.Provider>

@@ -1,0 +1,8 @@
+/* Declare variables for main color palette */
+:root {
+  --main-darkgray-color: #111111;
+  --main-gray-color: rgb(129, 129, 129);
+  --main-color-lightgray: #C0C0CC;
+}
+
+/* Main Containers */

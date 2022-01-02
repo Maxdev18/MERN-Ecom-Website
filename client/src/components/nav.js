@@ -71,7 +71,9 @@ export const Nav = (props) => {
                     </div>
 
                     <div className="cart-container">
-                        <Link to="/cart/user/:id"><h4 className="cart">Cart: {totalCart}</h4></Link>
+                        {user ? <Link to={`/cart/user/${user._id}`}>
+                            <h4 className="cart">Cart: {totalCart}</h4>
+                            </Link> : <Link to="/login"><h4 className="cart">Cart: {totalCart}</h4></Link>}
                     </div>
                 </div>
             </nav>
