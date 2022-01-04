@@ -11,11 +11,15 @@ export const Checkout = () => {
 
   React.useEffect(() => {
     let total = 0;
-    for (let i = 0; i < cartItems.length; i++) {
-      total += 0;
+    let quantityTotal = 0;
+    if(user) {
+      for (let i = 0; i < cartItems.length; i++) {
+        total += 0;
+      }
     }
+    
     setSubtotal(total);
-  }, []);
+  }, [cartItems]);
 
   return (
     <div className="main-checkout-container">

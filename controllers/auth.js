@@ -49,7 +49,7 @@ exports.login = (req, res, next) => {
                 .then(isCorrect => {
                     if(isCorrect) {
                         // Sign the JWT
-                        jwt.sign({ user: dbUser }, process.env.JWT_SECRET, { expiresIn: '60m' },
+                        jwt.sign({ user: dbUser }, process.env.JWT_SECRET, { expiresIn: '1y' },
                             (err, token) => {
                                 if(err) {
                                     return res.json({message: err})
