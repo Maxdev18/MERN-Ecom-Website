@@ -18,7 +18,5 @@ I have learned a lot from this project. Starting from zero knowledge about full 
 - Mongoose
 
 # Todo's
-- Search bar functionality
 - Payment system
 - 3rd party email service for password reset and contact
-- User cart UI
