@@ -80,22 +80,38 @@
 
 .cart-quantity {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
   bottom: 0px;
-  left: 0px;
-  width: 100px;
+  left: 50px;
+  width: 50px;
   height: 30px;
 }
 
-.btn-update {
+.btn-increment {
   position: absolute;
   bottom: 0px;
-  left: 112px;
+  left: 110px;
   background-color: black;
   color: white;
   border: none;
   cursor: pointer;
   height: 30px;
-  width: 80px
+  width: 40px;
+}
+
+.btn-decrement {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  height: 30px;
+  width: 40px;
 }
 
 /* Sidebar summery */
