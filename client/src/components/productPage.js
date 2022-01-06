@@ -25,12 +25,10 @@ export const ProductPage = (props) => {
                 console.log(err);
             });
         
-        if(res) {
-            setProduct(res.data);
+            if(res) {
+                setProduct(res.data);
+            }
         }
-        
-        }
-        
         getProduct();
     }, []);
 

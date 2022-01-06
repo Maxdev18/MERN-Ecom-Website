@@ -64,14 +64,6 @@ const App = () => {
     }
 
     const [cartItems, setCartItems] = useState([]);
-    
-    const onRemove = (product) => {
-        const id = (element) => element.id === product.id;
-        const index = cartItems.findIndex(id);
-        cartItems.splice(index, 1);
-        setCartItems([...cartItems]);
-        console.log(cartItems);
-    };
 
     //Search Item Function
     async function searchQuery(search, currentPage) {

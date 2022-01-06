@@ -66,11 +66,6 @@ exports.addToCartPost = async (req, res, next) => {
       return data;
     });
 
-  const user = await User.findById(userId)
-    .then(data => {
-      return data;
-    });
-
   if(cart) {
     let itemIndex = cart.products.findIndex(p => p.product._id == id);
     
@@ -80,7 +75,7 @@ exports.addToCartPost = async (req, res, next) => {
       cart.products.set(itemIndex, productItem);
     } else {
       cart.products.push({ product, quantity: 1 });
-    }
+    } 
     
     await cart.save(err => {
       if(err) {
