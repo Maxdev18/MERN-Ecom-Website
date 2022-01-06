@@ -24,17 +24,24 @@ export const Cart = () => {
   }, [cartItems]);
 
   //Update quantity of products
-  async function updateQuantity(productQuantity) {
-    await Axios.get(`/cart/user/${user._id}`, productQuantity)
+  async function increment(product) {
+    await Axios.post(`/cart/user/${user._id}`, { type: 'INCREMENT', product })
       .then(response => {
-        console.log(response);
-      });
-  };
+        setCartItems([...response.data.products]);
+    });
+  }
+
+  async function decrement(product) {
+    await Axios.post(`/cart/user/${user._id}`, { type: 'DECREMENT', product })
+    .then(response => {
+      setCartItems([...response.data.products]);
+    });
+  }
   
-  async function deleteProduct() {
-    await Axios.get(`/cart/user/${user._id}`)
+  async function deleteProduct(product) {
+    await Axios.post(`/cart/user/${user._id}`, { type: 'DELETE', product })
       .then(response => {
-        console.log(response);
+        setCartItems([...response.data.products]);
       });
   };
   
@@ -55,11 +62,12 @@ export const Cart = () => {
 
                 <div className="cart-quantity-container">
                   <div className="quantity-container">
-                    <input type="text" value={item.quantity} className="cart-quantity" onChange={e => setQuantity(e.target.value)} />
-                    <button onClick={() => updateQuantity(quantity)} className="btn-update">Update</button>
+                    <button onClick={() => decrement(item)} className="btn-decrement">-</button>
+                    <p className="cart-quantity">{item.quantity}</p>
+                    <button onClick={() => increment(item)} className="btn-increment">+</button>
                   </div>
                   
-                  <img onClick={deleteProduct} src="https://img.icons8.com/material-outlined/384/000000/trash--v2.png" className="delete-product" alt="trash can"/>
+                  <img onClick={() => deleteProduct(item)} src="https://img.icons8.com/material-outlined/384/000000/trash--v2.png" className="delete-product" alt="trash can"/>
                 </div>
               </div>
             </div>
