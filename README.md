@@ -19,4 +19,3 @@ I have learned a lot from this project. Starting from zero knowledge about full 
 
 # Todo's
 - Payment system
-- 3rd party email service for password reset and contact
