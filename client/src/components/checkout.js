@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Redirect, Link } from 'react-router-dom';
 import { UserContext, CartContext } from '../Contexts/UserContext';
 import '../styles/components/cart/checkout.css';
 import { PayPalButton } from "react-paypal-button-v2";

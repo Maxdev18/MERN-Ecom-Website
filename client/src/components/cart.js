@@ -48,7 +48,7 @@ export const Cart = () => {
   return (
     <div className="main-cart-container">
       <div className="cart-products-container">
-        {cartItems.map(item => {
+        {cartItems.length !== 0 ? cartItems.map(item => {
           return (
             <div className="cart-products-rendered" key={item.product._id}>
               <img src={item.product.imageURL} alt={item.product.name} className="product-photo"/>
@@ -72,7 +72,8 @@ export const Cart = () => {
               </div>
             </div>
           );
-        })}
+        }) : <h2 className="title">Your cart is empty...</h2>}
+        
       </div>
 
       <div className="cart-sidebar-container">
@@ -85,7 +86,7 @@ export const Cart = () => {
           <p>${subtotal.toFixed(2)}</p>
         </div>
 
-        <Link to={`/cart/user/${user._id}/checkout`} className="btn-checkout">Checkout</Link>
+        <Link to={user ? `/cart/user/${user._id}/checkout` : null} className="btn-checkout">Checkout</Link>
       </div>
     </div>
   )
