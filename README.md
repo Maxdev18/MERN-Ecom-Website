@@ -16,6 +16,3 @@ I have learned a lot from this project. Starting from zero knowledge about full 
 - ExpressJS
 - MongoDB
 - Mongoose
-
-# Todo's
-- Payment system
