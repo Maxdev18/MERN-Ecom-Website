@@ -1,27 +1,8 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 import '../styles/homepage/home.css';
 import { ProductsComp } from '../components/homeContent';
-const axios = require('axios');
 
-export const Home = () => {
-    //Declare state variables
-    let [products, setProducts] = useState([]);
-
-    // Fetch product data from backend API
-    useEffect(()=> {
-        fetchProductData();
-    }, []);
-
-    const fetchProductData = async () => {
-        await axios.get('api/products')
-            .then(jsonRes => {
-                setProducts(jsonRes.data);
-                console.log(jsonRes.data)
-            })
-            .catch(err => console.log(err));
-    };
-
+export const Home = (props) => {
     return (
         <div className="main-container">
             <div className="home-container">
@@ -45,7 +26,7 @@ export const Home = () => {
 
             <div className="home-products-container">
 
-                 <ProductsComp />
+                 <ProductsComp searchQ={props.searchQ}/>
 
             </div>
         </div>

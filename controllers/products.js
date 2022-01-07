@@ -17,18 +17,17 @@ exports.getProductData = async (req, res) => {
 
 exports.getProducts = async (req, res, next) => {
   const searchQuery = req.query ? req.query.search : false;
-  
   // Scalable pagination
   if(searchQuery) {
     const PAGE_SIZE = 6;
     const page = parseInt(req.query.page || "0");
     let products;
     if(page == 1) {
-      products = await Products.find({}).limit(PAGE_SIZE).skip(0);
+      products = await Products.find();
     } else {
-      products = await Products.find({}).limit(PAGE_SIZE).skip(PAGE_SIZE * (page - 1));
+      products = await Products.find().limit(PAGE_SIZE).skip(PAGE_SIZE * (page - 1));
     }
-  
+    
     const filteredResults = products.filter(item => {
       const splitQuery = searchQuery.toLowerCase().split(' ');
       for(let i = 0; i <= splitQuery.length; i++) {
