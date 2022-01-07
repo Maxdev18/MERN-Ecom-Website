@@ -12,7 +12,6 @@ import { Footer } from './components/footer';
 import { About } from './components/about';
 import { Login } from './components/login';
 import { Register } from './components/register';
-import { ForgotPassword } from './components/forgotPW';
 import { Contact } from './components/contact';
 import { ProductsPage } from './components/productsPage';
 import { ProductPage } from './components/productPage';
@@ -45,7 +44,9 @@ const App = () => {
 
                 await axios.get(`/api/get-cart/${userData._id}`)
                     .then(data => {
-                        setCartItems(data.data.products);
+                        if(data.data !== null) {
+                            setCartItems(data.data.products);
+                        }
                     });
             } else {
                 setCartItems([]);
@@ -71,6 +72,7 @@ const App = () => {
             await axios.get(`/api/products?search=${search}&page=${currentPage}`)
             .then((res) => {
                 const response = res.data;
+                console.log(response);
                 setProducts(response.filteredResults);
                 setTotalPages(response.totalPages);
                 setCurrentPage(currentPage);
@@ -85,12 +87,12 @@ const App = () => {
             <CartContext.Provider value={{cartItems, setCartItems, onAdd}}>
                 <div className="container">
                     <Nav isLoggedIn={ isLoggedIn } countCartItems={cartItems.length} cartItems={cartItems} searchQ={{searchQuery}} queryString={{currentPage, setCurrentPage}} />
-                    <Route exact path="/" component={Home} />
+                    <Route exact path="/" render={(props) => (
+                        <Home {...props} searchQ={{searchQuery}}/>)} />
                     <Route exact path="/about" component={About} />
                     <Route exact path="/contact" component={Contact} />
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/register" component={Register} />
-                    <Route exact path="/forgot-password" component={ForgotPassword} />
                     <Route exact path="/cart/user/:id" component={Cart} />
                     <Route exact path="/cart/user/:id/checkout" component={Checkout} />
                     <Route exact path="/products" render={(props) => (

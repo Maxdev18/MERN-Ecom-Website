@@ -1,8 +1,22 @@
-/* Declare variables for main color palette */
-:root {
-  --main-darkgray-color: #111111;
-  --main-gray-color: rgb(129, 129, 129);
-  --main-color-lightgray: #C0C0CC;
+/* Main Containers */
+.main-checkout-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 90px;
+  position: relative;
+  height: 80vh;
 }
 
-/* Main Containers */
+.checkout-info-container {
+  padding-top: 40px;
+  width: 70%;
+}
+
+.total-container {
+  margin-bottom: 40px;
+}
+
+.user-information-container h1{
+margin-bottom: 30px;
+}

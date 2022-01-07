@@ -80,12 +80,12 @@ export const Cart = () => {
           <h2 className="cart-title">Cart</h2>
         </div>
 
-        <div className="subtotal-container">
+        <div className="subtotal-container amount-container">
           <p>Subtotal({quantity} items):</p>
           <p>${subtotal.toFixed(2)}</p>
         </div>
 
-        <Link to={`/cart/user/${user ? user._id : 'unauthorized'}/checkout`} className="btn-checkout">Checkout</Link>
+        <Link to={`/cart/user/${user._id}/checkout`} className="btn-checkout">Checkout</Link>
       </div>
     </div>
   )

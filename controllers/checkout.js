@@ -43,3 +43,10 @@ exports.updateQuantity = async (req, res) => {
 }
 
 //Checkout controllers
+exports.checkoutTransaction = async (req, res) => {
+  const userId = req.params.id;
+
+  const cart = await Cart.findByIdAndDelete(userId);
+  console.log(cart);
+  res.status(200);
+};
