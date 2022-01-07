@@ -7,7 +7,7 @@ This is simply a practice project of full stack development. The site is using t
 This project was made to help myself to learn more about back-end development and full stack development. Another reason is to improve my skills and ability to learn new modules and APIs quickly when needed like the paypal API. But most importantly, if anyone wants to take a look at my source code if they are also interested in making a full stack E-commerce application.
 
 # What did I learn?
-I have learned a lot from this project. Starting from zero knowledge about full stack development and piecing everything together, to actually understanding what each part does in the MERN stack, and to actually being able to use and understand models and project structures with bigger code base. I've also learned how to pass around data and user state like never before using HTTP requests and response headers. Another important thing which I finally learned is backend development. I never knew how much fun it could be in the backend, I'm not even being sarcastic. This project took awhile to finish the project because of life and other things but overall, definitly smarter, better, and faster than where I was before. 
+I have learned a lot from this project. Starting from zero knowledge about full stack development and piecing everything together, to actually understanding what each part does in the MERN stack, and to actually being able to use and understand models and project structures with bigger code base. I've also learned how to pass around data and user state like never before using HTTP requests and response headers. Another important thing which I finally learned is backend development. I never knew how much fun it could be in the backend, I'm not even being sarcastic. This project took awhile to finish because of life and other things but overall, definitly smarter, better, and faster than where I was before. 
 
 
 # Technologies
@@ -20,7 +20,7 @@ I have learned a lot from this project. Starting from zero knowledge about full 
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).\
-If you have cloned the project, remeber to install necessary dependancies by running `npm install` or `npm i`\
+If you have cloned the project, remember to install necessary dependancies by running `npm install` or `npm i`\
 before you run any of the later scripts shown below.
 
 ## Available Scripts
