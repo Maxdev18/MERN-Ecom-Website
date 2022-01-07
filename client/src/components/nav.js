@@ -56,7 +56,6 @@ export const Nav = (props) => {
                 <div className="links-container">
                     <a href="/products">Products</a>
                     <a href="/about">About</a>
-                    <a href="/faq">FAQ</a>
                     <a href="/contact">Contact</a>
                 </div>
                 <div className="nav-sub-container">

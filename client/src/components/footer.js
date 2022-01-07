@@ -3,14 +3,12 @@ import React from 'react';
 import '../styles/components/footer.css';
 
 export const Footer = () => {
-
     //Render footer
     return (
         <footer className="footer-container">
             <div className="footer-links-container">
                 <a href="/products">Products</a>
                 <a href="/about">About</a>
-                <a href="/faq">FAQ</a>
                 <a href="/contact">Contact</a>
             </div>  
 

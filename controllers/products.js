@@ -31,7 +31,6 @@ exports.getProducts = async (req, res, next) => {
   
     const filteredResults = products.filter(item => {
       const splitQuery = searchQuery.toLowerCase().split(' ');
-      console.log(splitQuery);
       for(let i = 0; i <= splitQuery.length; i++) {
         return item.name.toLowerCase().includes(splitQuery[i]) || item.description.toLowerCase().includes(splitQuery[i + 1]) ? item : null;
       }

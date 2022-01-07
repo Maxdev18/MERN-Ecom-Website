@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Maxdev18/MERN-Ecom-Website#readme",
   "dependencies": {
+    "@paypal/react-paypal-js": "^7.5.0",
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "concurrently": "^6.2.0",
@@ -35,6 +36,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.0.1",
     "mongoose": "^5.13.3",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "react-paypal-button-v2": "^2.6.3"
   }
 }
