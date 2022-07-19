@@ -1,9 +1,8 @@
-const Products = require('../models/products/products');
+const Product = require('../models/products/products');
 const Cart = require('../models/userCart/cart');
-const User = require('../models/authentication/userModel');
 
 exports.getProductData = async (req, res) => {
-  let products = await Products.findById(req.params.id, (err, data) => {
+  let products = await Product.findById(req.params.id, (err, data) => {
     if(err){
         console.log(err);
     }
@@ -15,17 +14,18 @@ exports.getProductData = async (req, res) => {
   return products;
 };
 
-exports.getProducts = async (req, res, next) => {
-  const searchQuery = req.query ? req.query.search : false;
+exports.getProducts = async (req, res) => {
+  const searchQuery = req.query.search ? req.query.search : false;
+  console.log(searchQuery)
   // Scalable pagination
   if(searchQuery) {
     const PAGE_SIZE = 6;
     const page = parseInt(req.query.page || "0");
     let products;
     if(page == 1) {
-      products = await Products.find();
+      products = await Product.find();
     } else {
-      products = await Products.find().limit(PAGE_SIZE).skip(PAGE_SIZE * (page - 1));
+      products = await Product.find().limit(PAGE_SIZE).skip(PAGE_SIZE * (page - 1));
     }
     
     const filteredResults = products.filter(item => {
@@ -40,17 +40,18 @@ exports.getProducts = async (req, res, next) => {
       filteredResults
     });
   } else {
-    let products = await Products.find({})
+    let products = await Product.find({})
     .then(data => {
+      console.log(data);
       return data;
     });
     
     res.body = products;
-    res.send(res.body);
+    res.status(200).send(res.body);
   }
 };
 
-exports.addToCartPost = async (req, res, next) => {
+exports.addToCartPost = async (req, res) => {
   const id = req.params.id;
   const userId = req.body._id;
 
@@ -99,7 +100,7 @@ exports.addToCartPost = async (req, res, next) => {
   }
 };
 
-exports.getCart = async (req, res, next) => {
+exports.getCart = async (req, res) => {
   const userId = req.params.id;
   console.log(userId);
 

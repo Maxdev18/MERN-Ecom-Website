@@ -11,14 +11,15 @@ export const ProductsPage = (props) => {
     React.useEffect(() => {
         if(window.location.search === '') {
             async function fetchProducts() {
-                let res = await Axios.get('/api/products')
+                await Axios.get('/api/products')
                     .then(data => {
+                        console.log(data.data);
+                        setProducts(data.data);
                         return data;
                     })
                     .catch(err => {
                         console.log(err)
                     });
-                setProducts(res.data);
             }
             fetchProducts();
         }
